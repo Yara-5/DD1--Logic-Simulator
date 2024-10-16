@@ -6,7 +6,7 @@
 using namespace std;
 
 void FillGateDictionary(map<string, char> gateName);
-void InputFiles();
+void InputFiles(ifstream& v, ifstream& s);
 void ReadVFile();
 void ReadInput();
 void ReadOutput();
@@ -16,14 +16,14 @@ void ReadGates();
 void SteadyState();
 bool EoSimulation();
 void HandleEvent();
-int CalculateState(vector<int> in, char gate);
+int CalculateState(vector<int> in, char gate, int start, int end);
 
 int main()
 {
 	map<string, char> gateName;
 	FillGateDictionary(gateName);
-
-	InputFiles();
+	ifstream Vfile, stumiliFile;
+	InputFiles(Vfile, stumiliFile);
 	ReadVFile();
 	SteadyState();
 	while (!EoSimulation())
@@ -46,7 +46,7 @@ void FillGateDictionary(map<string, char> gateName)		// complete
 	gateName["not"] = 'n';
 }
 
-void ReadVFile()	// not complete implementation
+void ReadVFile(ifstream& v, ifstream& s)	// not complete implementation
 {
 	ReadInput();
 	ReadOutput();
